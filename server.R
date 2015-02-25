@@ -44,6 +44,9 @@ shinyServer(function(input, output, session) {
     } else if (!(is.null(input$file) || is.null(input$configfile))) {
       updateCheckboxInput(session, "noconfig", value = FALSE)
     }
+    
+    updateSelectInput(session, "event", 
+                      choices = paste(Data()$GENE, Data()$EVENT, sep = ", "))
   })
   
   output$chart <- renderPlot({
