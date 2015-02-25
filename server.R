@@ -71,5 +71,9 @@ shinyServer(function(input, output) {
   output$configdata <- renderDataTable({
     Config()
   })
+  
+  output$usage <- renderText({
+    print("Nothing here yet")
+  })
 
 })

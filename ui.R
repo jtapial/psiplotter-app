@@ -89,7 +89,7 @@ shinyUI(fluidPage(
                  plotOutput('chart')),
         tabPanel('Input Data', dataTableOutput('inputdata')),
         tabPanel('Config', dataTableOutput('configdata')),
-        tabPanel('Usage', verbatimTextOutput('usage'))
+        tabPanel('Usage', textOutput('usage'))
       )
     )
   )
