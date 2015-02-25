@@ -62,7 +62,10 @@ shinyUI(fluidPage(
         helpText(HTML("<b>ABOUT</b>")),
         HTML(paste('Source Code:', '<a href="https://github.com/kcha/psiplotter-app" target="_blank">GitHub</a>')),
         HTML('<br/>'),
-        HTML(paste('Version:', version))
+        HTML(paste('Version:', version)),
+        HTML('<br/>'),
+        HTML(paste('Issues/Questions/Feedback: Report', 
+                   '<a href="https://github.com/kcha/psiplotter-app/issues" target="_blank">here</a>'))
       ),
             
       wellPanel(
