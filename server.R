@@ -1,7 +1,7 @@
 library(shiny)
 library(psiplot)
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
 
   Data <- reactive({
     if (is.null(input$file)) {
@@ -36,6 +36,14 @@ shinyServer(function(input, output) {
     d <- Data()[which(Data()$EVENT == ev[2]),]
     validate(need(nrow(d) == 1, "Can't find event"))
     return(d)
+  })
+  
+  observe({
+    if (!is.null(input$file) && is.null(input$configfile)) {
+      updateCheckboxInput(session, "noconfig", value = TRUE)
+    } else if (!(is.null(input$file) || is.null(input$configfile))) {
+      updateCheckboxInput(session, "noconfig", value = FALSE)
+    }
   })
   
   output$chart <- renderPlot({
