@@ -1,5 +1,6 @@
 library(shiny)
 library(psiplot)
+require(markdown)
 
 version <- "0.0.2-alpha"
   
@@ -91,7 +92,8 @@ shinyUI(fluidPage(
                  plotOutput('chart')),
         tabPanel('Input Data', dataTableOutput('inputdata')),
         tabPanel('Config', dataTableOutput('configdata')),
-        tabPanel('Usage', textOutput('usage'))
+        tabPanel('Usage', includeMarkdown('docs/usage.md')),
+        tabPanel('Known Issues', includeMarkdown('docs/known_issues.md'))
       )
     )
   )

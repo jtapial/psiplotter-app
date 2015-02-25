@@ -82,9 +82,5 @@ shinyServer(function(input, output, session) {
   output$configdata <- renderDataTable({
     Config()
   })
-  
-  output$usage <- renderText({
-    print("Nothing here yet")
-  })
 
 })

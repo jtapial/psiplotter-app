@@ -1,0 +1,1 @@
+- Plots may get cut off and introduce a vertical scroll bar to see entire image 
