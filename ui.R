@@ -7,7 +7,7 @@ version <- "0.0.2-alpha"
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("VAST-TOOLS PSI Plotter"),
+  titlePanel("VAST-TOOLS PSI Plotter (in development!)"),
   
   sidebarLayout(
     sidebarPanel(
