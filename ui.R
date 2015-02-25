@@ -86,9 +86,10 @@ shinyUI(fluidPage(
       tabsetPanel(
         id = 'dataset',
         tabPanel('Plot',
-                 selectInput("event", "Select event",  
+                 selectizeInput("event", "Select event from list or type to search:",  
                              paste(psi$GENE, psi$EVENT, sep = ", "), 
-                             width = "100%"),
+                             width = "100%",
+                             options = list(placeholder = 'Select/Type GENE or EVENT')),
                  plotOutput('chart')),
         tabPanel('Input Data', dataTableOutput('inputdata')),
         tabPanel('Config', dataTableOutput('configdata')),
