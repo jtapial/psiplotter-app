@@ -38,11 +38,15 @@ shinyUI(fluidPage(
           
           checkboxInput("lines", "Draw line connecting data points"),
           
-          selectInput("pch", "Symbol", 0:25, selected = 20),
+          selectInput(
+            "pch", 
+            HTML(paste("Plotting Symbol (see", '<a href="http://www.statmethods.net/advgraphs/parameters.html" target="_blank">Graphical Parameters</a> for help)')),  
+            0:25, 
+            selected = 20),
           
           radioButtons("color", "Set color",
-                       c("Config" = "config",
-                         "BW" = "black")),
+                       c("Config Colors" = "config",
+                         "Black" = "black")),
           
           sliderInput("ylim", "Set y-axis range", min = 0, max = 100,
                       value = c(0, 100), step = 1),
