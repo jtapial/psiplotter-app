@@ -2,7 +2,7 @@ library(shiny)
 library(psiplot)
 require(markdown)
 
-version <- "0.0.2-alpha"
+version <- "0.1.0-alpha"
   
 shinyUI(fluidPage(
 
@@ -37,22 +37,34 @@ shinyUI(fluidPage(
           
           checkboxInput("lines", "Draw line connecting data points"),
           
+          br(),
+          
           selectInput(
             "pch", 
             HTML(paste("Plotting Symbol (see", '<a href="http://www.statmethods.net/advgraphs/parameters.html" target="_blank">Graphical Parameters</a> for help)')),  
             0:25, 
             selected = 20),
           
+          br(),
+          
           radioButtons("color", "Set color",
                        c("Config Colors" = "config",
                          "Black" = "black")),
+          
+          br(),
           
           sliderInput("ylim", "Set y-axis range", min = 0, max = 100,
                       value = c(0, 100), step = 1),
           
           sliderInput("cex.pch", "Data point size (i.e. cex.pch)", 
-                      min = 0.4, max = 2.5, value = 1, step = 0.1)
+                      min = 0.4, max = 2.5, value = 1, step = 0.1),
           
+          br(),
+          HTML("Note on selecting samples:"),
+          HTML('<ul>'),
+          HTML('<li>The samples are restricted by config.</li>'),
+          HTML('<li>The order of samples can also be modified and will override the order defined by config.</li>'),
+          HTML('</ul>')
 #           actionButton("go", "Update")
         )
       ),
@@ -85,10 +97,18 @@ shinyUI(fluidPage(
       tabsetPanel(
         id = 'dataset',
         tabPanel('Plot',
-                 selectizeInput("event", "Select event from list or type to search:",  
-                             paste(psi$GENE, psi$EVENT, sep = ", "), 
-                             width = "100%",
-                             options = list(placeholder = 'Select/Type GENE or EVENT')),
+                 selectizeInput(
+                   "event", "Select event from list or type to search:",  
+                   paste(psi$GENE, psi$EVENT, sep = ", "), 
+                   width = "100%",
+                   options = list(placeholder = 'Select/Type GENE or EVENT')),
+                 selectInput(
+                   "samples", 
+                   "Select samples to plot:",
+                   get_psi_samples(psi),
+                   selected = get_psi_samples(psi),
+                   width = "100%",
+                   multiple = TRUE),
                  plotOutput('chart')),
         tabPanel('Input Data', dataTableOutput('inputdata')),
         tabPanel('Config', dataTableOutput('configdata')),

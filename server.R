@@ -39,28 +39,56 @@ shinyServer(function(input, output, session) {
   })
   
   observe({
+    # Update noconfig checkbox
     if (!is.null(input$file) && is.null(input$configfile)) {
       updateCheckboxInput(session, "noconfig", value = TRUE)
     } else if (!(is.null(input$file) || is.null(input$configfile))) {
       updateCheckboxInput(session, "noconfig", value = FALSE)
     }
     
+    # Update events upon new data
     updateSelectInput(session, "event", 
                       choices = paste(Data()$GENE, Data()$EVENT, sep = ", "))
+    
+    #  Update samples list
+    if (input$noconfig) {
+      smp <- get_psi_samples(Data())
+      updateSelectInput(session, "samples", choices = smp, selected = smp)
+    } else {
+      smp <- get_psi_samples(Data())
+      ix <- match(Config()$SampleName, smp)
+      ix <- ix[!is.na(ix)]
+      updateSelectInput(session, "samples", choices = smp[ix], selected = smp[ix])
+    }
+  })
+  
+  UserConfig <- reactive({
+    cfg <- Config()
+    
+    # if samples do not match config, update config with new order
+    if (input$noconfig == FALSE) {
+      validate(need(length(input$samples) > 0, "No samples selected"))
+      cfg <- cfg[which(cfg$SampleName %in% input$samples),]  
+      if (!identical(cfg[order(cfg$Order), "SampleName"], input$samples)) {
+        cfg <- cfg[match(input$samples, cfg$SampleName),]
+        cfg$Order <- 1:length(input$samples)
+      }
+    }
+    
+    return(cfg)  
   })
   
   output$chart <- renderPlot({
-    
     if (input$color == "black") {
       col <- rep("black", (ncol(Data()) - 6)/2)
     } else {
       col <- NULL  
     }
     
-    event <- Event()
+    validate(need(length(input$samples) >= 2, "Need two or more samples"))
     
     # generate bins based on input$bins from ui.R
-    plot_event(event, config = Config(), 
+    plot_event(Event(), config = UserConfig(), 
                errorbar = input$errorbars,
                col = col,
                gridlines = input$gridlines,
