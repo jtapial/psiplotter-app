@@ -7,8 +7,7 @@ shinyServer(function(input, output, session) {
     if (is.null(input$file)) {
       data <- psi
     }  else {
-      data <- read.table(input$file$datapath, header=TRUE, sep="\t", 
-                         stringsAsFactor=FALSE)
+      data <- read.delim(input$file$datapath, stringsAsFactor=FALSE)
     }
     return(data)
   })
@@ -17,9 +16,8 @@ shinyServer(function(input, output, session) {
     if (is.null(input$configfile)) {
       cfg <- config
     } else {
-      cfg <- read.table(input$configfile$datapath, header=TRUE, sep="\t", 
-                        stringsAsFactor=FALSE,
-                        comment.char="")
+      cfg <- read.delim(input$configfile$datapath, stringsAsFactor=FALSE)
+                        
     }
     
     if (input$noconfig) {
