@@ -6,14 +6,15 @@ alternatively-spliced exons that were computed by
 
 ## Usage
 
-To run on your local machine, the following R packages must be installed:
+To run on your local machine, execute the following code in your R console to 
+install the required packages:
 
 ```r
 install.packages(c("devtools", "shiny"))
 devtools::install_github('kcha/psiplot')
 ```
 
-Then, to start the application, run the following command:
+Then, to start the application, execute the following command:
 
 ```r
 shiny::runGitHub('psiplotter-app', 'kcha')
