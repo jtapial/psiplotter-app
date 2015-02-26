@@ -58,14 +58,14 @@ shinyUI(fluidPage(
                       value = c(0, 100), step = 1),
           
           sliderInput("cex.pch", "Data point size (i.e. cex.pch)", 
-                      min = 0.4, max = 2.5, value = 1, step = 0.1),
+                      min = 0.4, max = 2.5, value = 1, step = 0.1)
           
-          br(),
-          HTML("Note on selecting samples:"),
-          HTML('<ul>'),
-          HTML('<li>The samples are restricted by config.</li>'),
-          HTML('<li>The order of samples can also be modified and will override the order defined by config.</li>'),
-          HTML('</ul>')
+#           br(),
+#           HTML("Note on selecting samples:"),
+#           HTML('<ul>'),
+#           HTML('<li>The samples are restricted by config.</li>'),
+#           HTML('<li>The order of samples can also be modified and will override the order defined by config.</li>'),
+#           HTML('</ul>')
 #           actionButton("go", "Update")
         )
       ),
