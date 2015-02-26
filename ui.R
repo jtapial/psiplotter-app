@@ -7,7 +7,7 @@ version <- "0.1.0-alpha"
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("VAST-TOOLS PSI Plotter (in development!)"),
+  titlePanel("VAST-TOOLS PSI Plotter (prototype)"),
   
   sidebarLayout(
     sidebarPanel(
@@ -18,10 +18,11 @@ shinyUI(fluidPage(
           multiple=FALSE
         ),
         fileInput(
-          "configfile", "Also, upload an optional config file", 
+          "configfile", "[Optional] Upload a config file", 
           multiple=FALSE
         ),
-        checkboxInput("noconfig", "Do not use config file")
+        checkboxInput("noconfig", "Do not use config file"),
+        helpText('Check this box if you do not want to use a config file')
       ),
       
       conditionalPanel(
