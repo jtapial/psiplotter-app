@@ -110,11 +110,13 @@ shinyUI(fluidPage(
                    selected = get_psi_samples(psi),
                    width = "100%",
                    multiple = TRUE),
-                 plotOutput('chart')),
+                 plotOutput('chart'),
+                 tableOutput('selectedevent'), height = "100%"),
         tabPanel('Input Data', dataTableOutput('inputdata')),
         tabPanel('Config', dataTableOutput('configdata')),
         tabPanel('Usage', includeMarkdown('docs/usage.md')),
-        tabPanel('Known Issues', includeMarkdown('docs/known_issues.md'))
+        tabPanel('Known Issues', includeMarkdown('docs/known_issues.md')),
+        type = "pills"
       )
     )
   )

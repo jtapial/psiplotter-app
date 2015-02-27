@@ -1,5 +1,6 @@
 library(shiny)
 library(psiplot)
+library(reshape2)
 
 shinyServer(function(input, output, session) {
 
@@ -99,7 +100,23 @@ shinyServer(function(input, output, session) {
                cex.yaxis = 1,
                cex.main = 1.3)
 
-  }, width = 900, height = 600)
+  })
+  
+  output$selectedevent <- renderTable({
+    # Show table of PSI and Q for selected event
+    if (length(input$samples) < 2) {
+      return(NULL)
+    }
+    ev <- Event()
+    smp <- get_psi_samples(ev)
+    q <- paste(smp, "Q", sep = ".")
+    psi <- melt(ev[, smp], 
+                   variable.name = "Sample", value.name = "PSI")
+    qual <- melt(ev[, q], measure.vars = q,
+                        variable.name = "Sample", value.name = "Q")
+    df <- cbind(psi, Q = qual[,2])
+    df[match(input$samples, df$Sample),]
+  })
 
   output$inputdata <- renderDataTable({
     Data()
