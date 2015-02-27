@@ -2,12 +2,12 @@ library(shiny)
 library(psiplot)
 require(markdown)
 
-version <- "0.1.0-alpha"
+version <- "0.1.1"
   
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("VAST-TOOLS PSI Plotter (prototype)"),
+  titlePanel(paste0("VAST-TOOLS PSI Plotter (version ", version, ")")),
   
   sidebarLayout(
     sidebarPanel(
@@ -30,7 +30,7 @@ shinyUI(fluidPage(
         wellPanel(
           helpText(HTML("<b>PLOT SETTINGS</b>")),
                   
-          checkboxInput("groupmean", "Show group-specific averages"),
+          checkboxInput("groupmean", "Show group-specific averages (requires config)"),
           
           checkboxInput("gridlines", "Show grid lines", value = TRUE),
           
