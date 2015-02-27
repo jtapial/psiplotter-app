@@ -2,7 +2,7 @@ library(shiny)
 library(psiplot)
 require(markdown)
 
-version <- "0.1.3"
+version <- "0.1.4"
 
 shinyUI(fluidPage(
 
@@ -110,8 +110,8 @@ shinyUI(fluidPage(
                    selected = get_psi_samples(psi),
                    width = "100%",
                    multiple = TRUE),
-                 plotOutput('chart'),
-                 tableOutput('selectedevent'), height = "100%"),
+                 plotOutput('chart', height = "600px", width = "95%"),
+                 tableOutput('selectedevent')),
         tabPanel('Input Data', dataTableOutput('inputdata')),
         tabPanel('Config', dataTableOutput('configdata')),
         tabPanel('Usage', includeMarkdown('docs/usage.md')),

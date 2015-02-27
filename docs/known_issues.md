@@ -1,1 +1,1 @@
-- Plots may get cut off and introduce a vertical scroll bar to see entire image 
+- ~~Plots may get cut off and introduce a vertical scroll bar to see entire image~~ *Fixed in 0.1.4*
