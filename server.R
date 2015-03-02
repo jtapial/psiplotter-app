@@ -3,7 +3,7 @@ library(psiplot)
 library(reshape2)
 
 shinyServer(function(input, output, session) {
-
+  
   Data <- reactive({
     if (is.null(input$file)) {
       data <- psi
@@ -100,6 +100,10 @@ shinyServer(function(input, output, session) {
                cex.yaxis = 1,
                cex.main = 1.3)
 
+    if (is.null(input$file)) {
+      watermark <- "Sample data\nUpload input data to remove this watermark"
+      mtext(watermark, side = 1, line = -1.3, adj = 1, col = rgb(1, 0, 0, .4), cex = 1.2)
+    }
   })
   
   output$selectedevent <- renderTable({
