@@ -115,7 +115,6 @@ shinyUI(fluidPage(
         tabPanel('Input Data', dataTableOutput('inputdata')),
         tabPanel('Config', dataTableOutput('configdata')),
         tabPanel('Usage', includeMarkdown('docs/usage.md')),
-        tabPanel('Known Issues', includeMarkdown('docs/known_issues.md')),
         tabPanel('News', includeMarkdown('docs/news.md')),
         type = "pills"
       )

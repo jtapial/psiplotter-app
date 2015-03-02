@@ -6,6 +6,7 @@ all issues and feedback using the GitHub
 0.1.5 - 2015-03-02
 - Add tab for this news page
 - Add watermark to plot when sample dataset is initially used
+- Move Known Issues section into Usage
 
 0.1.4 - 2015-02-27
 - Set height and width of plot output to fix plot from being cut off

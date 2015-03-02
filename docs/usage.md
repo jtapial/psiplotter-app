@@ -60,3 +60,5 @@ will be reset and you will lose your any manual changes.
 In addition, to using the configuration file. You can adjust the plot settings 
 using the control panel on the left sidebar.
 
+## Known issues
+- ~~Plots may get cut off and introduce a vertical scroll bar to see entire image~~ *Fixed in 0.1.4*
