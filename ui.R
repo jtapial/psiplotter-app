@@ -15,11 +15,13 @@ shinyUI(fluidPage(
         helpText(HTML("<b>UPLOAD DATA</b>")),
         fileInput(
           "file", "To begin, upload your VAST-TOOLS input file.", 
-          multiple=FALSE
+          multiple=FALSE,
+          accept = c('text/plain', 'text/tab-separated-values', '.tab')
         ),
         fileInput(
           "configfile", "[Optional] Upload a config file", 
-          multiple=FALSE
+          multiple=FALSE,
+          accept = c('text/plain','text/tab-separated-values', '.tab', '.config')
         ),
         checkboxInput("noconfig", "Do not use config file"),
         helpText('Check this box if you do not want to use a config file')
