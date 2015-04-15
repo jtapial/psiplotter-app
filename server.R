@@ -87,19 +87,19 @@ shinyServer(function(input, output, session) {
     validate(need(length(input$samples) >= 2, "Need two or more samples"))
     
     # generate bins based on input$bins from ui.R
-    plot_event(Event(), config = UserConfig(), 
+    gp <- plot_event(Event(), config = UserConfig(), 
                errorbar = input$errorbars,
                col = col,
                gridlines = input$gridlines,
                groupmean = input$groupmean,
-               lines = input$lines,
                pch = as.numeric(input$pch),
                ylim = input$ylim,
                cex.pch = input$cex.pch,
-               cex.xaxis = 1,
-               cex.yaxis = 1,
-               cex.main = 1.3)
+               cex.xaxis = input$cex.xaxis,
+               cex.yaxis = input$cex.yaxis,
+               cex.main = input$cex.main)
 
+  
     if (is.null(input$file)) {
       watermark <- "Sample data\nUpload input data to remove this watermark"
       mtext(watermark, side = 1, line = -1.3, adj = 1, col = rgb(1, 0, 0, .4), cex = 1.2)

@@ -40,27 +40,30 @@ shinyUI(fluidPage(
           
           checkboxInput("lines", "Draw line connecting data points"),
           
-          br(),
-          
           selectInput(
             "pch", 
             HTML(paste("Plotting Symbol (see", '<a href="http://www.statmethods.net/advgraphs/parameters.html" target="_blank">Graphical Parameters</a> for help)')),  
             0:25, 
             selected = 20),
           
-          br(),
-          
           radioButtons("color", "Set color",
                        c("Config Colors" = "config",
-                         "Black" = "black")),
+                         "Black" = "black"), inline = TRUE),
+                  
+          sliderInput("cex.pch", "Data point size (i.e. cex.pch)", 
+                      min = 0.4, max = 2.5, value = 1, step = 0.1),
           
-          br(),
+          sliderInput("cex.main", "Title font size (choose 0 to remove)", 
+                      min = 0, max = 30, value = 14, step = 1),
+          
+          sliderInput("cex.xaxis", "X-axis font size",
+                      min = 1, max = 30, value = 12, step = 1),
+          
+          sliderInput("cex.yaxis", "Y-axis font size",
+                      min = 1, max = 30, value = 12, step = 1),
           
           sliderInput("ylim", "Set y-axis range", min = 0, max = 100,
-                      value = c(0, 100), step = 1),
-          
-          sliderInput("cex.pch", "Data point size (i.e. cex.pch)", 
-                      min = 0.4, max = 2.5, value = 1, step = 0.1)
+                      value = c(0, 100), step = 1)
           
 #           br(),
 #           HTML("Note on selecting samples:"),
@@ -113,7 +116,8 @@ shinyUI(fluidPage(
                    width = "100%",
                    multiple = TRUE),
                  plotOutput('chart', height = "600px", width = "95%"),
-                 tableOutput('selectedevent')),
+                 tableOutput('selectedevent'), align = "center"
+         ),
         tabPanel('Input Data', dataTableOutput('inputdata')),
         tabPanel('Config', dataTableOutput('configdata')),
         tabPanel('Usage', includeMarkdown('docs/usage.md')),
