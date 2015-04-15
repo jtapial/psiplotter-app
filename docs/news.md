@@ -7,6 +7,7 @@ all issues and feedback using the GitHub
 - Updated to support psiplot version 1.2.0, which uses ggplot2 to plot graphics
 - Add controls for font size
 - Align plot panel to the center
+- Bug fixes
 
 0.1.5 - 2015-03-02
 - Add tab for this news page
