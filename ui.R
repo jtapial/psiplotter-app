@@ -2,7 +2,7 @@ library(shiny)
 library(psiplot)
 require(markdown)
 
-version <- "0.1.5"
+version <- "2.0.0"
 
 shinyUI(fluidPage(
 

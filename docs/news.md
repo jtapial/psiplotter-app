@@ -3,6 +3,11 @@ features may be buggy and not work as described. Please report
 all issues and feedback using the GitHub 
 [issue tracker](https://github.com/kcha/psiplotter-app/issues).**
 
+0.2.0 - 2015-04-14
+- Updated to support psiplot version 1.2.0, which uses ggplot2 to plot graphics
+- Add controls for font size
+- Align plot panel to the center
+
 0.1.5 - 2015-03-02
 - Add tab for this news page
 - Add watermark to plot when sample dataset is initially used
