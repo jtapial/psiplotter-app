@@ -4,7 +4,7 @@ all issues and feedback using the GitHub
 [issue tracker](https://github.com/kcha/psiplotter-app/issues).**
 
 0.2.0 - 2015-04-14
-- Updated to support psiplot version 1.2.0, which uses ggplot2 to plot graphics
+- Updated to support psiplot [version 2.0.0](https://github.com/kcha/psiplot/releases/tag/v2.0.0), which uses ggplot2 to plot graphics
 - Add controls for font size
 - Align plot panel to the center
 - Bug fixes
