@@ -51,7 +51,7 @@ shinyUI(fluidPage(
                          "Black" = "black"), inline = TRUE),
                   
           sliderInput("cex.pch", "Data point size (i.e. cex.pch)", 
-                      min = 0.4, max = 2.5, value = 1, step = 0.1),
+                      min = 0, max = 16, value = 3, step = 0.5),
           
           sliderInput("cex.main", "Title font size (choose 0 to remove)", 
                       min = 0, max = 30, value = 14, step = 1),
