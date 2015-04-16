@@ -63,33 +63,39 @@ shinyServer(function(input, output, session) {
   
   UserConfig <- reactive({
     cfg <- Config()
+    validate(need(length(input$samples) > 0, "No samples selected"))
     
     # if samples do not match config, update config with new order
     if (input$noconfig == FALSE) {
-      validate(need(length(input$samples) > 0, "No samples selected"))
       cfg <- cfg[which(cfg$SampleName %in% input$samples),]  
       if (!identical(cfg[order(cfg$Order), "SampleName"], input$samples)) {
         cfg <- cfg[match(input$samples, cfg$SampleName),]
         cfg$Order <- 1:length(input$samples)
       }
+    } else {
+      cfg <- data.frame(
+        Order = 1:length(input$samples),
+        SampleName = input$samples,
+        GroupName = rep(NA, length(input$samples)),
+        RColorCode = rep("black", length(input$samples))
+        )      
     }
-    
     return(cfg)  
   })
   
   output$chart <- renderPlot({
     if (input$color == "black") {
-      col <- rep("black", (ncol(Data()) - 6)/2)
+      col <- rep("black", length(input$samples))
     } else {
       col <- NULL  
     }
     
     validate(need(length(input$samples) >= 2, "Need two or more samples"))
-    
+
     # generate bins based on input$bins from ui.R
     gp <- plot_event(Event(), config = UserConfig(), 
                errorbar = input$errorbars,
-               col = col,
+#                col = col,
                gridlines = input$gridlines,
                groupmean = input$groupmean,
                pch = as.numeric(input$pch),
