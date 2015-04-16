@@ -4,10 +4,13 @@ library(reshape2)
 
 shinyServer(function(input, output, session) {
   
+  cfg_loaded <<- FALSE
+  
   Data <- reactive({
     if (is.null(input$file)) {
       data <- psi
     }  else {
+#       write("Reading data", stderr())
       data <- read.delim(input$file$datapath, stringsAsFactor=FALSE)
     }
     return(data)
@@ -16,14 +19,17 @@ shinyServer(function(input, output, session) {
   Config <- reactive({
     if (is.null(input$configfile)) {
       cfg <- config
-    } else {
-      cfg <- read.delim(input$configfile$datapath, stringsAsFactor=FALSE)
-                        
-    }
-    
-    if (input$noconfig) {
-      cfg <- NULL
-    }
+    } else {      
+      if (input$noconfig) {
+        cfg <- NULL
+      } else {
+        write("Reading config", stderr())
+        cfg <- read.delim(input$configfile$datapath, stringsAsFactor=FALSE)
+        cfg_loaded <<- TRUE
+        print(cfg_loaded)
+      }
+    } 
+
     return(cfg)
   })
   
@@ -41,8 +47,14 @@ shinyServer(function(input, output, session) {
     # Update noconfig checkbox
     if (!is.null(input$file) && is.null(input$configfile)) {
       updateCheckboxInput(session, "noconfig", value = TRUE)
+      updateRadioButtons(session, "color", selected = "black")
     } else if (!(is.null(input$file) || is.null(input$configfile))) {
-      updateCheckboxInput(session, "noconfig", value = FALSE)
+      print(paste("observe:", cfg_loaded))
+      if (!cfg_loaded) {
+#         browser()
+        updateCheckboxInput(session, "noconfig", value = FALSE)
+        updateRadioButtons(session, "color", selected = "config")
+      }
     }
     
     # Update events upon new data
@@ -53,11 +65,13 @@ shinyServer(function(input, output, session) {
     if (input$noconfig) {
       smp <- get_psi_samples(Data())
       updateSelectInput(session, "samples", choices = smp, selected = smp)
+      updateRadioButtons(session, "color", selected = "black")
     } else {
       smp <- get_psi_samples(Data())
       ix <- match(Config()$SampleName, smp)
       ix <- ix[!is.na(ix)]
       updateSelectInput(session, "samples", choices = smp[ix], selected = smp[ix])
+      updateRadioButtons(session, "color", selected = "config")
     }
   })
   
