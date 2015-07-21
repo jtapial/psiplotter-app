@@ -1,6 +1,4 @@
-**This app is still under heavy development and subject to ongoing changes. Some 
-features may be buggy and not work as described. Please report 
-all issues and feedback using the GitHub 
+**Please report all issues and feedback using the GitHub 
 [issue tracker](https://github.com/kcha/psiplotter-app/issues).**
 
 0.2.0 - 2015-04-14

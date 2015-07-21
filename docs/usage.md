@@ -2,9 +2,7 @@
 alternatively-spliced exons that were computed by
 [VAST-TOOLS](https://github.com/vastgroup/vast-tools).
 
-**This app is still under heavy development and subject to ongoing changes. Some 
-features may be buggy and not work as described. Please report 
-all issues and feedback using the GitHub 
+**Please report all issues and feedback using the GitHub 
 [issue tracker](https://github.com/kcha/psiplotter-app/issues).**
 
 ## Tabs
