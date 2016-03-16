@@ -144,10 +144,10 @@ shinyServer(function(input, output, session) {
 
   output$inputdata <- renderDataTable({
     Data()
-  })
+  }, options = list(scrollX = TRUE))
 
   output$configdata <- renderDataTable({
     Config()
-  })
+  }, options = list(scrollX = TRUE))
 
 })
