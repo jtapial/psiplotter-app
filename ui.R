@@ -1,6 +1,7 @@
 library(shiny)
 library(psiplot)
 require(markdown)
+library(plotly)
 
 version <- "0.2.0"
 
@@ -115,7 +116,7 @@ shinyUI(fluidPage(
                    selected = get_psi_samples(psi),
                    width = "100%",
                    multiple = TRUE),
-                 plotOutput('chart', height = "600px", width = "95%"),
+                 plotlyOutput('chart', height = "600px", width = "95%"),
                  tableOutput('selectedevent'), align = "center"
          ),
         tabPanel('Input Data', dataTableOutput('inputdata')),

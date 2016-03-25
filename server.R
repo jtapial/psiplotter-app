@@ -2,6 +2,7 @@ library(shiny)
 library(psiplot)
 library(reshape2)
 
+
 shinyServer(function(input, output, session) {
   
   cfg_loaded <<- FALSE
@@ -16,9 +17,9 @@ shinyServer(function(input, output, session) {
     return(data)
   })
   
-  Config <- reactive({
+  PsiConfig <- reactive({
     if (is.null(input$configfile)) {
-      cfg <- config
+      cfg <- psiplot::config
     } else {      
       if (input$noconfig) {
         cfg <- NULL
@@ -68,7 +69,7 @@ shinyServer(function(input, output, session) {
       updateRadioButtons(session, "color", selected = "black")
     } else {
       smp <- get_psi_samples(Data())
-      ix <- match(Config()$SampleName, smp)
+      ix <- match(PsiConfig()$SampleName, smp)
       ix <- ix[!is.na(ix)]
       updateSelectInput(session, "samples", choices = smp[ix], selected = smp[ix])
       updateRadioButtons(session, "color", selected = "config")
@@ -76,7 +77,7 @@ shinyServer(function(input, output, session) {
   })
   
   UserConfig <- reactive({
-    cfg <- Config()
+    cfg <- PsiConfig()
     validate(need(length(input$samples) > 0, "No samples selected"))
     
     # if samples do not match config, update config with new order
@@ -97,15 +98,14 @@ shinyServer(function(input, output, session) {
     return(cfg)  
   })
   
-  output$chart <- renderPlot({
+  output$chart <- renderPlotly({
     if (input$color == "black") {
       col <- rep("black", length(input$samples))
     } else {
       col <- NULL  
     }
     
-    validate(need(length(input$samples) >= 2, "Need two or more samples"))
-
+s
     # generate bins based on input$bins from ui.R
     gp <- plot_event(Event(), config = UserConfig(), 
                errorbar = input$errorbars,
@@ -119,11 +119,13 @@ shinyServer(function(input, output, session) {
                cex.yaxis = input$cex.yaxis,
                cex.main = input$cex.main)
 
+    p <- ggplotly(gp)
+    p
   
-    if (is.null(input$file)) {
-      watermark <- "Sample data\nUpload input data to remove this watermark"
-      mtext(watermark, side = 1, line = -1.3, adj = 1, col = rgb(1, 0, 0, .4), cex = 1.2)
-    }
+    # if (is.null(input$file)) {
+    #   watermark <- "Sample data\nUpload input data to remove this watermark"
+    #   mtext(watermark, side = 1, line = -1.3, adj = 1, col = rgb(1, 0, 0, .4), cex = 1.2)
+    # }
   })
   
   output$selectedevent <- renderTable({
@@ -147,7 +149,7 @@ shinyServer(function(input, output, session) {
   }, options = list(scrollX = TRUE))
 
   output$configdata <- renderDataTable({
-    Config()
+    PsiConfig()
   }, options = list(scrollX = TRUE))
 
 })
