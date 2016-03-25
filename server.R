@@ -105,7 +105,6 @@ shinyServer(function(input, output, session) {
       col <- NULL  
     }
     
-s
     # generate bins based on input$bins from ui.R
     gp <- plot_event(Event(), config = UserConfig(), 
                errorbar = input$errorbars,
