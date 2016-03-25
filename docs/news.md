@@ -1,7 +1,7 @@
 **Please report all issues and feedback using the GitHub 
 [issue tracker](https://github.com/kcha/psiplotter-app/issues).**
 
-0.3.0 -2016-03-25
+0.3.0 beta - 2016-03-25
  - Use [plotly](https://plot.ly/r/) to produce interactive plots
   - Known issue: plotly will not output correct colours for error bars.
 

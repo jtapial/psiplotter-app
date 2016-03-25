@@ -3,7 +3,7 @@ library(psiplot)
 require(markdown)
 library(plotly)
 
-version <- "0.3.0"
+version <- "0.3.0 beta"
 
 shinyUI(fluidPage(
 
