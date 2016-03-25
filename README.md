@@ -10,7 +10,7 @@ To run on your local machine, execute the following code in your R console to
 install the required packages:
 
 ```r
-install.packages(c("devtools", "shiny"))
+install.packages(c("devtools", "shiny", "plotly"))
 devtools::install_github('kcha/psiplot')
 ```
 
