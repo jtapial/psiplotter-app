@@ -7,6 +7,7 @@ alternatively-spliced exons that were computed by
 **New** A v0.3.0 beta version that uses [`plotly`](https://plot.ly/r/) for
 creating interactive plots is available under the [`plotly` branch](https://github.com/kcha/psiplotter-app/tree/plotly) or by running:
 ```r
+install.packages(c("devtools", "shiny", "plotly"))
 shiny::runGitHub('psiplotter-app', 'kcha', ref = "plotly")
 ```
 
