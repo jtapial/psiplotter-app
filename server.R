@@ -161,8 +161,8 @@ shinyServer(function(input, output, session) {
     ev <- Event()
     smp <- get_psi_samples(ev)
     q <- paste(smp, "Q", sep = ".")
-    psi <- melt(ev[, smp], 
-                   variable.name = "Sample", value.name = "PSI")
+    psi <- suppressMessages(melt(ev[, smp], 
+                   variable.name = "Sample", value.name = "PSI"))
     qual <- melt(ev[, q], measure.vars = q,
                         variable.name = "Sample", value.name = "Q")
     df <- cbind(psi, Q = qual[,2])
