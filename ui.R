@@ -2,7 +2,7 @@ library(shiny)
 library(psiplot)
 require(markdown)
 
-version <- "0.2.0"
+version <- "0.2.1"
 
 shinyUI(fluidPage(
 
@@ -108,9 +108,16 @@ shinyUI(fluidPage(
                    paste(psi$GENE, psi$EVENT, sep = ", "), 
                    width = "100%",
                    options = list(placeholder = 'Select/Type GENE or EVENT')),
+                 actionButton("prev_event", "",
+                              icon = icon("glyphicon glyphicon-backward", 
+                                          lib = "glyphicon")),
+                 actionButton("next_event", "",
+                              icon = icon("glyphicon glyphicon-forward", 
+                                          lib = "glyphicon")),
+                 br(), br(),
                  selectInput(
                    "samples", 
-                   "Select samples to plot:",
+                   "Select/Type samples to plot:",
                    get_psi_samples(psi),
                    selected = get_psi_samples(psi),
                    width = "100%",

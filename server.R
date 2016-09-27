@@ -97,6 +97,33 @@ shinyServer(function(input, output, session) {
     return(cfg)  
   })
   
+  
+  observeEvent(input$next_event, {
+    ix <- which(Data()$EVENT == Event()$EVENT)
+    next_ix <- ix + 1
+    if (next_ix > nrow(Data())) {
+     showNotification("At the end of the list", duration = 2, type = "warning") 
+    } else {
+      ev <- Data()[next_ix,]
+      updateSelectInput(session, "event", 
+                        selected = paste(ev$GENE, ev$EVENT, sep = ", "))
+    }
+  })
+  
+  observeEvent(input$prev_event, {
+    ix <- which(Data()$EVENT == Event()$EVENT)
+    next_ix <- ix - 1
+    if (next_ix < 1) {
+      showNotification("At the beginning of the list", duration = 2,
+                       type = "warning")
+    } else {
+      ev <- Data()[next_ix,]
+      updateSelectInput(session, "event", 
+                        selected = paste(ev$GENE, ev$EVENT, sep = ", "))
+    }
+  })
+  
+  
   output$chart <- renderPlot({
     if (input$color == "black") {
       col <- rep("black", length(input$samples))
@@ -105,7 +132,7 @@ shinyServer(function(input, output, session) {
     }
     
     validate(need(length(input$samples) >= 2, "Need two or more samples"))
-
+    
     # generate bins based on input$bins from ui.R
     gp <- plot_event(Event(), config = UserConfig(), 
                errorbar = input$errorbars,
