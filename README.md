@@ -4,6 +4,8 @@ A Shiny app for visualizing percent spliced-in (PSI) values of
 alternatively-spliced exons that were computed by
 [VAST-TOOLS](https://github.com/vastgroup/vast-tools).
 
+![screenshot](http://individual.utoronto.ca/hakevin/images/psiplotter_preview.png "Screenshot")
+
 **New** A v0.3.0 beta version that uses [`plotly`](https://plot.ly/r/) for
 creating interactive plots is available under the [`plotly` branch](https://github.com/kcha/psiplotter-app/tree/plotly) or by running:
 ```r
