@@ -145,7 +145,7 @@ shinyServer(function(input, output, session) {
                cex.xaxis = input$cex.xaxis,
                cex.yaxis = input$cex.yaxis,
                cex.main = input$cex.main)
-
+    print(gp)
   
     if (is.null(input$file)) {
       watermark <- "Sample data\nUpload input data to remove this watermark"
